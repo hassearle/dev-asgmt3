@@ -121,30 +121,6 @@
         ((factor))
         (newline)
       ];end first equality check in condition
-      [(equal? (car (current_token)) "+")
-        (display "Found ")
-        (display (second (current_token)))
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end second equality check in condition
-      [(equal? (car (current_token)) "-")
-        (display "Found ")
-        (display (second (current_token)))
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end third equality check in condition
-      [(equal? (car (current_token)) "=")
-        (display "Found ")
-        (display (second (current_token)))
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end forth equality check in condition
       [(equal? (car (current_token)) "*")
         (display "Found ")
         (display (second (current_token)))
@@ -177,15 +153,14 @@
         (display "Leaving <factor>")
         (newline)
       ];end eighth equality check in condition
-      ; [(equal? (car (current_token)) "factor")
-      ;   (display "Found ")
-      ;   (newline)
-      ;   (exp)
-      ;   (newline)
-      ;   (next_token)
-      ;   (display "Leaving <factor>")
-      ;   (newline)
-      ;];end ninth equality check in condition
+      [(equal? (car (current_token)) ")")
+        (display "Found ")
+        (display (second (current_token)))
+        (newline)
+        (next_token)
+        (display "Leaving <factor>")
+        (newline)
+      ];end ninth equality check in condition
       [(equal? (car (current_token)) "int")
         (int)
         (display "Leaving <factor>")
@@ -263,12 +238,15 @@
   (newline)
   (cond
     [(equal? (car (current_token)) "+")
-      (factor)
+      (display "Found ")
+      (display (second (current_token)))
+      (newline)
       (next_token)
       (+(term)(etail))
     ] ;end of first equality check in condition
     [(equal? (car (current_token)) "-")
-      (factor)
+      (display "Found ")
+      (display (second (current_token)))      
       (next_token)
       (-(term)(etail))
       ] ;end of first equality check in condition
@@ -292,25 +270,6 @@
     (tt)
     )
   )
-
-;;helper function for factor function
-(define (fctr i)
-  (display "Found ")
-  (display (second (current_token)))
-  (newline)
-  (next_token)
-  (display "Leaving <factor>")
-  (newline)
-)
-
-;;helper function to test factor function
-;;factors everything in file
-(define (factorAll)
-  (eof)
-  (factor)
-  (next_token)
-  (factorAll)
-)
 
 ;;helper function to check for EOF
 (define (eof)
