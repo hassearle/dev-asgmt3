@@ -6,8 +6,8 @@
 ;;reads in every line from tokens file and saves
 ;;each token/lexeme pair as a separate list item
 ;(define tokens (file->lines (string->path "D:\\Dropbox\\auburn_faculty\\RacketPrograms\\tokens")));;school computer
-;(define tokens (file->lines (string->path "/home/asearle/dev/asgmt3/kss0024output.txt")));;home computer
-(define tokens (file->lines (string->path "/home/asearle/dev/asgmt3/test.txt")));;home computer
+(define tokens (file->lines (string->path "/home/asearle/dev/asgmt3_/kss0024output.txt")));;home computer
+;(define tokens (file->lines (string->path "/home/asearle/dev/asgmt3/test.txt")));;home computer
 
 ;;helper function
 ;;retrieves the first token from the list of tokens
@@ -117,7 +117,7 @@
         (display (second (current_token)))
         (newline)
         (next_token)
-        (display "Leaving <factor>")
+        ((factor))
         (newline)
       ];end first equality check in condition
       [(equal? (car (current_token)) "+")
