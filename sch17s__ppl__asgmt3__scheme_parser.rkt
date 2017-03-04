@@ -112,6 +112,7 @@
       [(equal? (car (current_token)) "(")
         (display "Found ")
         (display (second (current_token)))
+        (newline)
         (next_token)
         (exp)
         (display (second (current_token)))
@@ -176,15 +177,15 @@
         (display "Leaving <factor>")
         (newline)
       ];end eighth equality check in condition
-      [(equal? (car (current_token)) "factor")
-        (display "Found ")
-        (newline)
-        (exp)
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end ninth equality check in condition
+      ; [(equal? (car (current_token)) "factor")
+      ;   (display "Found ")
+      ;   (newline)
+      ;   (exp)
+      ;   (newline)
+      ;   (next_token)
+      ;   (display "Leaving <factor>")
+      ;   (newline)
+      ;];end ninth equality check in condition
       [(equal? (car (current_token)) "int")
         (int)
         (display "Leaving <factor>")
@@ -211,8 +212,46 @@
 ;;in addition, also displays when entering or leaving
 ;;function (parse trace)
 (define (exp)
- (+ 1)
-  );end define exp
+ (display "Entering <exp>")
+ (newline)
+ (term)
+ (display "Leaving <exp>")
+ (newline)
+
+);end define exp
+
+(define (term)
+  (display "Entering <term>")
+  (newline)
+  (factor)
+  (next_token)
+  (ttail)
+  (display "Leaving <term>")
+  (newline)
+);end define term
+
+(define (ttail)
+  (display "Entering <ttail>")
+  (newline)
+  (cond
+    [(equal? (car (current_token)) "*")
+      (factor)
+      (next_token)
+      (*(factor)(ttail))
+    ] ;end of first equality check in condition
+    [(equal? (car (current_token)) "/")
+      (factor)
+      (next_token)
+      (*(factor)(ttail))
+      ] ;end of first equality check in condition
+    [(equal? (car (current_token)) "EPSILON")
+      (factor)
+      ] ;end of first equality check in condition
+  )
+  
+  (display "Leaving <ttail>")
+  (newline)
+);end define ttail
 
 ;;test function to test whether or not next_token
 ;;will actually terminate program when it encounters
