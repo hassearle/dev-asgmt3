@@ -1,0 +1,35 @@
+Token: "x" type: letter
+Token: " " type: NewLine
+Token: "=" type: =
+Token: " " type: NewLine
+Token: "3" type: number
+Token: "
+" type: NewLine
+Token: "y" type: letter
+Token: " " type: NewLine
+Token: "=" type: =
+Token: "  " type: NewLine
+Token: "5" type: number
+Token: "
+" type: NewLine
+Token: "z" type: letter
+Token: " " type: NewLine
+Token: "=" type: =
+Token: " " type: NewLine
+Token: "(" type: (
+Token: "x" type: letter
+Token: " " type: NewLine
+Token: "+" type: +
+Token: " " type: NewLine
+Token: "y" type: letter
+Token: ")" type: )
+Token: " " type: NewLine
+Token: "/" type: /
+Token: " " type: NewLine
+Token: "3" type: number
+Token: "
+" type: NewLine
+Token: "print" type: print
+Token: " " type: NewLine
+Token: "z" type: letter
+Token: "eof" type: eof
