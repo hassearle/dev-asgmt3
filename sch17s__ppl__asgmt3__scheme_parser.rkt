@@ -211,15 +211,18 @@
 ;;displays message found + lexeme that was encountered
 ;;in addition, also displays when entering or leaving
 ;;function (parse trace)
+;calls term then etail
 (define (exp)
  (display "Entering <exp>")
  (newline)
  (term)
+ (etail)
  (display "Leaving <exp>")
  (newline)
 
 );end define exp
 
+;;calls factor and ttail
 (define (term)
   (display "Entering <term>")
   (newline)
@@ -230,6 +233,7 @@
   (newline)
 );end define term
 
+;;handles *, /, or EPSILON expressions
 (define (ttail)
   (display "Entering <ttail>")
   (newline)
@@ -247,11 +251,35 @@
     [(equal? (car (current_token)) "EPSILON")
       (factor)
       ] ;end of first equality check in condition
-  )
+  );end of condition block
   
   (display "Leaving <ttail>")
   (newline)
 );end define ttail
+
+;;handles +, -, or EPSILON expressions
+(define (etail)
+  (display "Entering <etail>")
+  (newline)
+  (cond
+    [(equal? (car (current_token)) "+")
+      (factor)
+      (next_token)
+      (+(term)(etail))
+    ] ;end of first equality check in condition
+    [(equal? (car (current_token)) "-")
+      (factor)
+      (next_token)
+      (-(term)(etail))
+      ] ;end of first equality check in condition
+    [(equal? (car (current_token)) "EPSILON")
+      (factor)
+      ] ;end of first equality check in condition
+  ) ;end of condition block
+  
+  (display "Leaving <etail>")
+  (newline)
+)
 
 ;;test function to test whether or not next_token
 ;;will actually terminate program when it encounters
