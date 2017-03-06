@@ -1,7 +1,7 @@
 id x
-WhiteSpace  
+whitespace  
 = =
-WhiteSpace  
+Whitespace  
 int 3
 NewLine NL
 id y

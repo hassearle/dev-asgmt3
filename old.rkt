@@ -33,15 +33,47 @@
        (exit));end null tokens
       (else
        (cond
-         ((equal? (car (current_token)) "whitespace")
-          (next_token);call yourself again
-          )     
+        ;((equal? (car (current_token)) "whitespace") ;;original
+         ; ((equal? (car (current_token)) "WhiteSpace") ;;
+         ;   (or ((equal? (car (current_token)) "NL"))) ;;Ash
+         (whitespace_ck)
+         (display (whitespace_ck))
+          ;(next_token);call yourself again    
          );end cond
        );end else
       );end cond
     );end lambda
   );end next_token
+
+
     
+(define (whitespace_ck)
+  (cond
+    [(equal? (car (current_token)) "whitespace")
+      (next_token)
+    ]; end of condition 1
+    [ (equal? (car (current_token)) "NewLine")
+      (next_token)
+    ]; end of condition 2
+    [ (equal? (car (current_token)) "NL")
+      (next_token)
+    ]; end of condition 3
+    [(equal? (car (current_token)) "WhiteSpace")
+      (next_token)
+    ]; end of condition 4
+    [(equal? (car (current_token)) "Whitespace")
+      (next_token)
+    ]; end of condition 5
+    [(equal? (car (current_token)) " ")
+      (next_token)
+    ]; end of condition 6
+      [(equal? (car (current_token)) "")
+      (next_token)
+    ]; end of condition 7
+  );end of condition block
+)
+
+
 
 ;;checks ID rule
 ;;if current_token is an id token
@@ -58,7 +90,10 @@
        (display "Found ")
        (display (second (current_token)))
        (newline)
-       (next_token)
+       ; (next_token)
+       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+       ;(next_token);to 
+       ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
        (display "Leaving <id>")
        (newline)
        );end first equality check in condition
@@ -115,36 +150,40 @@
         (newline)
         (next_token)
         (exp)
-        (display (second (current_token)))
+        ;(display (second (current_token)))
+        ;(display(current_token))
+        ;(newline)
+        ;(next_token)
+        (display "Leaving <factor>")
         (newline)
-        (next_token)
-        ((factor))
+        (display (current_token));temp
+        (factor)
         (newline)
       ];end first equality check in condition
-      [(equal? (car (current_token)) "*")
-        (display "Found ")
-        (display (second (current_token)))
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end fifth equality check in condition
-      [(equal? (car (current_token)) "/")
-        (display "Found ")
-        (display (second (current_token)))
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end sixth equality check in condition
-      [(equal? (car (current_token)) "EPSILON")
-        (display "Found ")
-        (display (second (current_token)))
-        (newline)
-        (next_token)
-        (display "Leaving <factor>")
-        (newline)
-      ];end seventh equality check in condition
+      ; [(equal? (car (current_token)) "*")
+      ;   (display "Found ")
+      ;   (display (second (current_token)))
+      ;   (newline)
+      ;   (next_token)
+      ;   (display "Leaving <factor>")
+      ;   (newline)
+      ; ];end fifth equality check in condition
+      ; [(equal? (car (current_token)) "/")
+      ;   (display "Found ")
+      ;   (display (second (current_token)))
+      ;   (newline)
+      ;   (next_token)
+      ;   (display "Leaving <factor>")
+      ;   (newline)
+      ; ];end sixth equality check in condition
+      ; [(equal? (car (current_token)) "EPSILON")
+      ;   (display "Found ")
+      ;   (display (second (current_token)))
+      ;   (newline)
+      ;   (next_token)
+      ;   (display "Leaving <factor>")
+      ;   (newline)
+      ;];end seventh equality check in condition
       [(equal? (car (current_token)) "print")
         (display "Found ")
         (display (second (current_token)))
@@ -171,6 +210,18 @@
         (display "Leaving <factor>")
         (newline)
       ];end eleventh equality check in condition
+      ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+      ;TEMP
+      ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+      [(equal? (car (current_token)) "=")
+        (display "Found ")
+        (display (second (current_token)))
+        (newline)
+        (next_token)
+        (display "Leaving <factor>")
+        (newline)
+      ];end forth equality check in condition
+      ;-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
       [ else
         (display "Not an factor token: Error")
         (newline)
@@ -192,23 +243,46 @@
  (newline)
  (term)
  (etail)
+ ;(next_token)
  (display "Leaving <exp>")
  (newline)
 
 );end define exp
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;calls factor and ttail
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (term)
   (display "Entering <term>")
   (newline)
-  (factor)
-  (next_token)
-  (ttail)
-  (display "Leaving <term>")
-  (newline)
-);end define term
+  
+  (cond
+    (equal? (car (current_token)) "eof")
+    (display("EOF"))
+    (display("Leaving <term>"))
+    (exit)
+    (else
+     (cond
+      [(factor)
+        (next_token)
+        (ttail)
+        (next_token)
+        (ttail)
+        (next_token)
+        (display "Leaving <term>")
+        (newline)
+      ];end of condition 1
+     );end cond
+    );end else
+  );end cond
+);end of definition
 
+  
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;handles *, /, or EPSILON expressions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (ttail)
   (display "Entering <ttail>")
   (newline)
@@ -232,7 +306,10 @@
   (newline)
 );end define ttail
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;handles +, -, or EPSILON expressions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (etail)
   (display "Entering <etail>")
   (newline)
@@ -242,11 +319,15 @@
       (display (second (current_token)))
       (newline)
       (next_token)
-      (+(term)(etail))
+      (next_token)
+      ;(display(current_token))
+      (term)
+      (etail)
     ] ;end of first equality check in condition
     [(equal? (car (current_token)) "-")
       (display "Found ")
       (display (second (current_token)))      
+      (newline)
       (next_token)
       (-(term)(etail))
       ] ;end of first equality check in condition
@@ -255,9 +336,15 @@
       ] ;end of first equality check in condition
   ) ;end of condition block
   
+  ;(next_token);
   (display "Leaving <etail>")
   (newline)
 )
+
+; ;;handles = operator 
+; (define (assign)
+
+; )
 
 ;;test function to test whether or not next_token
 ;;will actually terminate program when it encounters
@@ -271,7 +358,11 @@
     )
   )
 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;helper function to check for EOF
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (define (eof)
   (cond 
     [(equal? current_token "eof")

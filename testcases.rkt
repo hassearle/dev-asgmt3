@@ -3,28 +3,75 @@
 (require rackunit
           "sch17s__ppl__asgmt3__scheme_parser.rkt")
 
-(id)
-(newline)
+(current_token);x
 (next_token)
+(current_token);ws
+(next_token)
+(current_token);=
+(next_token)
+(current_token);ws
+(next_token)
+(current_token);3
+(next_token)
+(current_token);nl
+(next_token)
+(current_token);y
+(next_token)
+(current_token);ws
+(next_token)
+(current_token);=
+(next_token)
+(current_token);ws
+(next_token)
+(current_token);5
+(next_token)
+(current_token);ln
+(next_token)
+(current_token);z
+(next_token)
+(current_token);ws
+(next_token)
+(current_token);=
+(next_token)
+(current_token);ws
+(next_token)
+(current_token);(
+(newline)
 
+(display (current_token))
 (factor)
-(newline)
-(next_token)
 
-(factor)
 (newline)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(next_token)
-(factor)
+(display "End of Test")
+(newline)
+(newline)
+
+
+
+
+
+; (id)
+; (newline)
+; (next_token)
+
+; (factor)
+; (newline)
+; (next_token)
+
+; (factor)
+; (newline)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (next_token)
+; (factor)
 
 
 
