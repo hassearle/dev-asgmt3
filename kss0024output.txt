@@ -1,32 +1,20 @@
-id x
-whitespace  
+id z
+Whitespace  
 = =
+Whitespace  
+( (
+id x
+Whitespace  
++ +
+Whitespace  
+id y
+) )
+Whitespace  
+/ /
 Whitespace  
 int 3
 NewLine NL
-id y
-WhiteSpace  
-= =
-WhiteSpace   
-int 5
-NewLine NL
-id z
-WhiteSpace  
-= =
-WhiteSpace  
-( (
-id x
-WhiteSpace  
-+ +
-WhiteSpace  
-id y
-) )
-WhiteSpace  
-/ /
-WhiteSpace  
-int 3
-NewLine NL
 print print
-WhiteSpace  
+Whitespace  
 id z
 eof eof
