@@ -26,6 +26,24 @@ WhiteSpace
 WhiteSpace  
 int 3
 NewLine NL
+id a
+WhiteSpace  
+= =
+WhiteSpace  
+( (
+( (
+id y
+WhiteSpace  
++ +
+WhiteSpace  
+int 2
+) )
+WhiteSpace  
+- -
+WhiteSpace  
+int 3
+) )
+NewLine NL
 print print
 WhiteSpace  
 id z

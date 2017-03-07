@@ -4,8 +4,8 @@
 		#http://stackoverflow.com/questions/7911669/create-file-in-ruby
 
 
-load "/home/asearle/dev/asgmt3_/asgmt1/sch17s__ppl__asgmt1__TinyToken.rb"
-load "/home/asearle/dev/asgmt3_/asgmt1/sch17s__ppl__asgmt1__TinyScanner.rb"
+load "/home/asearle/dev/asgmt3_/sch17s__ppl__asgmt3__asgmt1/sch17s__ppl__asgmt1__TinyToken.rb"
+load "/home/asearle/dev/asgmt3_/sch17s__ppl__asgmt3__asgmt1/sch17s__ppl__asgmt1__TinyScanner.rb"
 
 
 # filename.txt below is simply the "source code"
@@ -14,7 +14,7 @@ load "/home/asearle/dev/asgmt3_/asgmt1/sch17s__ppl__asgmt1__TinyScanner.rb"
 # simply include the file name, otherwise, you will need
 # to specify the entire path to the file as we did above
 # to load the other ruby modules
-scan = Scanner.new("/home/asearle/dev/asgmt1/sch17s__ppl__asgmt1__input.txt")
+scan = Scanner.new("/home/asearle/dev/asgmt3_/sch17s__ppl__asgmt3__asgmt1/sch17s__ppl__asgmt1__input.txt")
 tok = scan.nextToken()
 @output = ""
 
@@ -28,4 +28,4 @@ end
 puts "#{tok.get_type()} #{tok}\n"
 @output << "#{tok.get_type()} #{tok}\n"
 
-File.open("kss0024output.txt", "w") {|f| f.write(@output) }
+File.open("sch17s__ppl__asgmt3__asgmt1__kss0024output.txt", "w") {|f| f.write(@output) }
